@@ -1,5 +1,11 @@
 // Expondrá las APIs necesarias para que el frontend pueda obtener la información del perfil.
 // puede devolver datos en diferentes formatos (JSON y XML) dependiendo de las preferencias del cliente.
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
 @RestController
 @RequestMapping("/api/perfil")
 public class PerfilController {
