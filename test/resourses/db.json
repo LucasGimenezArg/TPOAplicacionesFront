@@ -1,0 +1,107 @@
+{
+    "usuario":[
+        [
+            {
+              "tipo_usuario": "UsuarioNormal",
+              "id": 1,
+              "nombre": "Juan",
+              "apellido": "Pérez",
+              "contrasena": "password123",
+              "fecha_nacimiento": "1990-01-01",
+              "mail": "juan.perez@example.com",
+              "nombre_usuario": "juanp"
+            },
+            {
+              "tipo_usuario": "UsuarioAdmin",
+              "id": 2,
+              "nombre": "Ana",
+              "apellido": "Gómez",
+              "contrasena": "adminpassword",
+              "fecha_nacimiento": "1985-05-15",
+              "mail": "ana.gomez@example.com",
+              "nombre_usuario": "anag"
+            },
+            {
+              "tipo_usuario": "UsuarioNormal",
+              "id": 3,
+              "nombre": "Carlos",
+              "apellido": "Ramírez",
+              "contrasena": "carlosramirez123",
+              "fecha_nacimiento": "1993-08-22",
+              "mail": "carlos.ramirez@example.com",
+              "nombre_usuario": "carlosr"
+            },
+            {
+              "tipo_usuario": "UsuarioAdmin",
+              "id": 4,
+              "nombre": "María",
+              "apellido": "Lopez",
+              "contrasena": "adminmaria456",
+              "fecha_nacimiento": "1988-12-11",
+              "mail": "maria.lopez@example.com",
+              "nombre_usuario": "marial"
+            },
+            {
+              "tipo_usuario": "UsuarioNormal",
+              "id": 5,
+              "nombre": "Pedro",
+              "apellido": "Fernández",
+              "contrasena": "pedrofernandez789",
+              "fecha_nacimiento": "1992-04-03",
+              "mail": "pedro.fernandez@example.com",
+              "nombre_usuario": "pedrof"
+            },
+            {
+              "tipo_usuario": "UsuarioNormal",
+              "id": 6,
+              "nombre": "Lucía",
+              "apellido": "Martínez",
+              "contrasena": "luciamartinez654",
+              "fecha_nacimiento": "1995-09-14",
+              "mail": "lucia.martinez@example.com",
+              "nombre_usuario": "luciam"
+            },
+            {
+              "tipo_usuario": "UsuarioAdmin",
+              "id": 7,
+              "nombre": "Jorge",
+              "apellido": "Sánchez",
+              "contrasena": "adminjorge321",
+              "fecha_nacimiento": "1987-03-25",
+              "mail": "jorge.sanchez@example.com",
+              "nombre_usuario": "jorges"
+            },
+            {
+              "tipo_usuario": "UsuarioNormal",
+              "id": 8,
+              "nombre": "Elena",
+              "apellido": "Ruiz",
+              "contrasena": "elenaruiz159",
+              "fecha_nacimiento": "1994-07-30",
+              "mail": "elena.ruiz@example.com",
+              "nombre_usuario": "elenar"
+            },
+            {
+              "tipo_usuario": "UsuarioAdmin",
+              "id": 9,
+              "nombre": "Roberto",
+              "apellido": "Torres",
+              "contrasena": "adminroberto753",
+              "fecha_nacimiento": "1989-06-10",
+              "mail": "roberto.torres@example.com",
+              "nombre_usuario": "robertor"
+            },
+            {
+              "tipo_usuario": "UsuarioNormal",
+              "id": 10,
+              "nombre": "Sofía",
+              "apellido": "García",
+              "contrasena": "sofiagarcia951",
+              "fecha_nacimiento": "1991-11-18",
+              "mail": "sofia.garcia@example.com",
+              "nombre_usuario": "sofiag"
+            }
+          ]
+          
+    ]
+}

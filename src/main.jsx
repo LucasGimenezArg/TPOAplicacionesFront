@@ -1,10 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import Inicio_sesion from './inicio_sesion'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <Inicio_sesion/>
   </StrictMode>,
 )
