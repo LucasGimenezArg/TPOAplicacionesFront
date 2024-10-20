@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Inicio_sesion from './inicio_sesion'
+
+import Login from './Page/IniciarSesion'
+import Crear from './Page/CrearCuenta'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Inicio_sesion/>
+    <Login/>
   </StrictMode>,
 )
