@@ -1,14 +1,23 @@
 
 import { FaUser } from "react-icons/fa"
 import { FaLock } from "react-icons/fa"
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
 
 
-const Login = () => {
+const Login = ({handleLogin}) => {
+    const navigate = useNavigate();
+
+    const onSubmit = (e) => { 
+        e.preventDefault();
+        handleLogin();
+        navigate('/');
+    }
+
     return (
         <div className="wrapper d-flex justify-content-center align-items-center vh-100">
-            <form action="" className="p-4 shadow-lg rounded bg-light" style={{ maxWidth: "400px", width: "100%" }}>
+            <form onSubmit={onSubmit} className="p-4 shadow-lg rounded bg-light" style={{ maxWidth: "400px", width: "100%" }}>
                 <h1 className="text-center mb-4">Iniciar sesion</h1>
 
                 <div className="input-group mb-3">

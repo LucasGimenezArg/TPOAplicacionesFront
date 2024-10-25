@@ -3,16 +3,26 @@ import Home from '../pages/Home';
 import Header from '../components/Header.jsx';
 import Login from '../pages/IniciarSesion.jsx';
 import Register from '../pages/CrearCuenta.jsx';
+import { useState } from 'react';
 
 function AppRoute() {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setisLoggedIn(true);
+  }
+
+  const handleLogout = () => {
+    setisLoggedIn(false);
+  }
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn = {isLoggedIn} handleLogout = {handleLogout}/>
       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home isLoggedIn = {isLoggedIn}/>} />
+          <Route path="/login" element={<Login handleLogin = {handleLogin}/>} />
+          <Route path="/register" element={<Register handleLogin = {handleLogin} />} />
       </Routes>
     </>
   )
