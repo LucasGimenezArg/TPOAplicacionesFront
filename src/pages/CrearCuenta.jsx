@@ -1,6 +1,5 @@
 
-import { FaUser } from "react-icons/fa"
-import { FaLock } from "react-icons/fa"
+import { FaUser, FaLock } from "react-icons/fa"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
 
