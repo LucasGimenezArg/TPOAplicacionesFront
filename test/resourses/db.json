@@ -1,319 +1,509 @@
 {
-    "usuario":[
-        [
-            {
-              "tipo_usuario": "UsuarioNormal",
-              "id": 1,
-              "nombre": "Juan",
-              "apellido": "Pérez",
-              "contrasena": "password123",
-              "fecha_nacimiento": "1990-01-01",
-              "mail": "juan.perez@example.com",
-              "nombre_usuario": "juanp"
-            },
-            {
-              "tipo_usuario": "UsuarioAdmin",
-              "id": 2,
-              "nombre": "Ana",
-              "apellido": "Gómez",
-              "contrasena": "adminpassword",
-              "fecha_nacimiento": "1985-05-15",
-              "mail": "ana.gomez@example.com",
-              "nombre_usuario": "anag"
-            },
-            {
-              "tipo_usuario": "UsuarioNormal",
-              "id": 3,
-              "nombre": "Carlos",
-              "apellido": "Ramírez",
-              "contrasena": "carlosramirez123",
-              "fecha_nacimiento": "1993-08-22",
-              "mail": "carlos.ramirez@example.com",
-              "nombre_usuario": "carlosr"
-            },
-            {
-              "tipo_usuario": "UsuarioAdmin",
-              "id": 4,
-              "nombre": "María",
-              "apellido": "Lopez",
-              "contrasena": "adminmaria456",
-              "fecha_nacimiento": "1988-12-11",
-              "mail": "maria.lopez@example.com",
-              "nombre_usuario": "marial"
-            },
-            {
-              "tipo_usuario": "UsuarioNormal",
-              "id": 5,
-              "nombre": "Pedro",
-              "apellido": "Fernández",
-              "contrasena": "pedrofernandez789",
-              "fecha_nacimiento": "1992-04-03",
-              "mail": "pedro.fernandez@example.com",
-              "nombre_usuario": "pedrof"
-            },
-            {
-              "tipo_usuario": "UsuarioNormal",
-              "id": 6,
-              "nombre": "Lucía",
-              "apellido": "Martínez",
-              "contrasena": "luciamartinez654",
-              "fecha_nacimiento": "1995-09-14",
-              "mail": "lucia.martinez@example.com",
-              "nombre_usuario": "luciam"
-            },
-            {
-              "tipo_usuario": "UsuarioAdmin",
-              "id": 7,
-              "nombre": "Jorge",
-              "apellido": "Sánchez",
-              "contrasena": "adminjorge321",
-              "fecha_nacimiento": "1987-03-25",
-              "mail": "jorge.sanchez@example.com",
-              "nombre_usuario": "jorges"
-            },
-            {
-              "tipo_usuario": "UsuarioNormal",
-              "id": 8,
-              "nombre": "Elena",
-              "apellido": "Ruiz",
-              "contrasena": "elenaruiz159",
-              "fecha_nacimiento": "1994-07-30",
-              "mail": "elena.ruiz@example.com",
-              "nombre_usuario": "elenar"
-            },
-            {
-              "tipo_usuario": "UsuarioAdmin",
-              "id": 9,
-              "nombre": "Roberto",
-              "apellido": "Torres",
-              "contrasena": "adminroberto753",
-              "fecha_nacimiento": "1989-06-10",
-              "mail": "roberto.torres@example.com",
-              "nombre_usuario": "robertor"
-            },
-            {
-              "tipo_usuario": "UsuarioNormal",
-              "id": 10,
-              "nombre": "Sofía",
-              "apellido": "García",
-              "contrasena": "sofiagarcia951",
-              "fecha_nacimiento": "1991-11-18",
-              "mail": "sofia.garcia@example.com",
-              "nombre_usuario": "sofiag"
-            }
-          ]
-          
-    ],
-    "productosDestacados": [
-        {
-            "id": 1,
-            "descripcion": "iPhone 13",
-            "stock": 13,
-            "precio": 999.0,
-            "categoria": {
-                "id": 1,
-                "nombre": "Móviles",
-                "descripcion": "Dispositivos móviles como smartphones y tablets"
-            },
-            "informacion": "iPhone 13 con pantalla Super Retina XDR y chip A15 Bionic.",
-            "direccionImagenes": [
-                "https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iphone13_hero_geo_09142021_inline.jpg.large.jpg"
-            ]
-        },
-        {
-            "id": 2,
-            "descripcion": "Samsung Galaxy S21",
-            "stock": 18,
-            "precio": 850.0,
-            "categoria": {
-                "id": 1,
-                "nombre": "Móviles",
-                "descripcion": "Dispositivos móviles como smartphones y tablets"
-            },
-            "informacion": "Samsung Galaxy S21 con cámara de alta resolución y pantalla de 120Hz.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 3,
-            "descripcion": "Audífonos inalámbricos Sony WH-1000XM4",
-            "stock": 29,
-            "precio": 300.0,
-            "categoria": {
-                "id": 3,
-                "nombre": "Accesorios",
-                "descripcion": "Accesorios tecnológicos como audífonos, teclados"
-            },
-            "informacion": "Audífonos con cancelación de ruido y batería de 30 horas.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 4,
-            "descripcion": "MacBook Air M1",
-            "stock": 5,
-            "precio": 1199.0,
-            "categoria": {
-                "id": 2,
-                "nombre": "Portátiles",
-                "descripcion": "Ordenadores portátiles para uso personal y profesional"
-            },
-            "informacion": "MacBook Air con chip M1 de Apple, 8 GB de RAM y pantalla Retina de 13.3 pulgadas.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 5,
-            "descripcion": "iPad Pro 12.9",
-            "stock": 10,
-            "precio": 1099.0,
-            "categoria": {
-                "id": 3,
-                "nombre": "Tablets",
-                "descripcion": "Dispositivos portátiles con pantalla táctil."
-            },
-            "informacion": "iPad Pro de 12.9 pulgadas con chip M1 y pantalla Liquid Retina XDR.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 6,
-            "descripcion": "Dell XPS 13",
-            "stock": 7,
-            "precio": 1299.0,
-            "categoria": {
-                "id": 2,
-                "nombre": "Portátiles",
-                "descripcion": "Ordenadores portátiles para uso personal y profesional"
-            },
-            "informacion": "Dell XPS 13 con procesador Intel i7 de 11ª generación y pantalla InfinityEdge.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 7,
-            "descripcion": "Apple Watch Series 7",
-            "stock": 15,
-            "precio": 399.0,
-            "categoria": {
-                "id": 5,
-                "nombre": "Wearables",
-                "descripcion": "Dispositivos tecnológicos vestibles como relojes inteligentes."
-            },
-            "informacion": "Apple Watch Series 7 con pantalla Retina siempre activa y resistencia al agua.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 8,
-            "descripcion": "Google Pixel 6",
-            "stock": 12,
-            "precio": 899.0,
-            "categoria": {
-                "id": 1,
-                "nombre": "Móviles",
-                "descripcion": "Dispositivos móviles como smartphones y tablets"
-            },
-            "informacion": "Google Pixel 6 con pantalla OLED de 6.4 pulgadas y procesador Google Tensor.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 9,
-            "descripcion": "Sony PlayStation 5",
-            "stock": 3,
-            "precio": 499.0,
-            "categoria": {
-                "id": 6,
-                "nombre": "Consolas",
-                "descripcion": "Consolas de videojuegos y accesorios."
-            },
-            "informacion": "Sony PlayStation 5 con disco SSD ultrarrápido y gráficos de 4K HDR.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 10,
-            "descripcion": "Xbox Series X",
-            "stock": 5,
-            "precio": 499.0,
-            "categoria": {
-                "id": 6,
-                "nombre": "Consolas",
-                "descripcion": "Consolas de videojuegos y accesorios."
-            },
-            "informacion": "Xbox Series X con 1TB de almacenamiento y tecnología de trazado de rayos.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 11,
-            "descripcion": "Amazon Echo Dot 4ta Gen",
-            "stock": 25,
-            "precio": 49.99,
-            "categoria": {
-                "id": 7,
-                "nombre": "Hogar Inteligente",
-                "descripcion": "Dispositivos para automatización y control del hogar."
-            },
-            "informacion": "Amazon Echo Dot de 4ta generación con Alexa integrada y diseño esférico.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 12,
-            "descripcion": "Kindle Paperwhite",
-            "stock": 15,
-            "precio": 129.99,
-            "categoria": {
-                "id": 8,
-                "nombre": "Lectores de eBooks",
-                "descripcion": "Dispositivos para leer libros electrónicos."
-            },
-            "informacion": "Kindle Paperwhite con pantalla de 6.8 pulgadas y luz ajustable cálida.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 13,
-            "descripcion": "GoPro HERO10 Black",
-            "stock": 7,
-            "precio": 499.99,
-            "categoria": {
-                "id": 9,
-                "nombre": "Cámaras",
-                "descripcion": "Cámaras de video y fotografía."
-            },
-            "informacion": "GoPro HERO10 Black con grabación en 5.3K y estabilización HyperSmooth 4.0.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 14,
-            "descripcion": "Apple AirPods Pro",
-            "stock": 18,
-            "precio": 249.99,
-            "categoria": {
-                "id": 4,
-                "nombre": "Auriculares",
-                "descripcion": "Auriculares inalámbricos y con cable."
-            },
-            "informacion": "Apple AirPods Pro con cancelación de ruido activa y audio espacial.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 15,
-            "descripcion": "Nintendo Switch",
-            "stock": 10,
-            "precio": 299.99,
-            "categoria": {
-                "id": 6,
-                "nombre": "Consolas",
-                "descripcion": "Consolas de videojuegos y accesorios."
-            },
-            "informacion": "Nintendo Switch con pantalla OLED de 7 pulgadas y modo de juego portátil y dock.",
-            "direccionImagenes": null
-        },
-        {
-            "id": 16,
-            "descripcion": "DJI Mini 2",
-            "stock": 8,
-            "precio": 449.0,
-            "categoria": {
-                "id": 10,
-                "nombre": "Drones",
-                "descripcion": "Drones para fotografía aérea y video."
-            },
-            "informacion": "DJI Mini 2 con cámara 4K y alcance de vuelo de hasta 10 km.",
-            "direccionImagenes": null
-        }
+  "categorias": [
+    {
+      "id": "1",
+      "nombre": "Móviles",
+      "descripcion": "Teléfonos móviles de última tecnología."
+    },
+    {
+      "id": "2",
+      "nombre": "Accesorios",
+      "descripcion": "Accesorios para dispositivos electrónicos."
+    },
+    {
+      "id": "3",
+      "nombre": "Portátiles",
+      "descripcion": "Computadoras portátiles de diferentes marcas y tamaños."
+    },
+    {
+      "id": "4",
+      "nombre": "Tablets",
+      "descripcion": "Tabletas de diferentes tamaños y características."
+    },
+    {
+      "id": "5",
+      "nombre": "Wearables",
+      "descripcion": "Dispositivos portátiles como relojes y pulseras inteligentes."
+    },
+    {
+      "id": "6",
+      "nombre": "Consolas",
+      "descripcion": "Consolas de videojuegos de diferentes marcas."
+    },
+    {
+      "id": "7",
+      "nombre": "Hogar Inteligente",
+      "descripcion": "Dispositivos para el hogar conectados a Internet."
+    },
+    {
+      "id": "8",
+      "nombre": "Lectores de eBooks",
+      "descripcion": "Dispositivos electrónicos para lectura de libros digitales."
+    },
+    {
+      "id": "9",
+      "nombre": "Cámaras",
+      "descripcion": "Cámaras fotográficas y de video, tanto para aficionados como profesionales."
+    },
+    {
+      "id": "10",
+      "nombre": "Auriculares",
+      "descripcion": "Auriculares y audífonos de diferentes tipos y características."
+    },
+    {
+      "id": "11",
+      "nombre": "Drones",
+      "descripcion": "Drones para fotografía, video y uso recreativo."
+    }
+  ],
+  "usuario": [
+    [
+      {
+        "tipo_usuario": "UsuarioNormal",
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Pérez",
+        "contrasena": "password123",
+        "fecha_nacimiento": "1990-01-01",
+        "mail": "juan.perez@example.com",
+        "nombre_usuario": "juanp"
+      },
+      {
+        "tipo_usuario": "UsuarioAdmin",
+        "id": 2,
+        "nombre": "Ana",
+        "apellido": "Gómez",
+        "contrasena": "adminpassword",
+        "fecha_nacimiento": "1985-05-15",
+        "mail": "ana.gomez@example.com",
+        "nombre_usuario": "anag"
+      },
+      {
+        "tipo_usuario": "UsuarioNormal",
+        "id": 3,
+        "nombre": "Carlos",
+        "apellido": "Ramírez",
+        "contrasena": "carlosramirez123",
+        "fecha_nacimiento": "1993-08-22",
+        "mail": "carlos.ramirez@example.com",
+        "nombre_usuario": "carlosr"
+      },
+      {
+        "tipo_usuario": "UsuarioAdmin",
+        "id": 4,
+        "nombre": "María",
+        "apellido": "Lopez",
+        "contrasena": "adminmaria456",
+        "fecha_nacimiento": "1988-12-11",
+        "mail": "maria.lopez@example.com",
+        "nombre_usuario": "marial"
+      },
+      {
+        "tipo_usuario": "UsuarioNormal",
+        "id": 5,
+        "nombre": "Pedro",
+        "apellido": "Fernández",
+        "contrasena": "pedrofernandez789",
+        "fecha_nacimiento": "1992-04-03",
+        "mail": "pedro.fernandez@example.com",
+        "nombre_usuario": "pedrof"
+      },
+      {
+        "tipo_usuario": "UsuarioNormal",
+        "id": 6,
+        "nombre": "Lucía",
+        "apellido": "Martínez",
+        "contrasena": "luciamartinez654",
+        "fecha_nacimiento": "1995-09-14",
+        "mail": "lucia.martinez@example.com",
+        "nombre_usuario": "luciam"
+      },
+      {
+        "tipo_usuario": "UsuarioAdmin",
+        "id": 7,
+        "nombre": "Jorge",
+        "apellido": "Sánchez",
+        "contrasena": "adminjorge321",
+        "fecha_nacimiento": "1987-03-25",
+        "mail": "jorge.sanchez@example.com",
+        "nombre_usuario": "jorges"
+      },
+      {
+        "tipo_usuario": "UsuarioNormal",
+        "id": 8,
+        "nombre": "Elena",
+        "apellido": "Ruiz",
+        "contrasena": "elenaruiz159",
+        "fecha_nacimiento": "1994-07-30",
+        "mail": "elena.ruiz@example.com",
+        "nombre_usuario": "elenar"
+      },
+      {
+        "tipo_usuario": "UsuarioAdmin",
+        "id": 9,
+        "nombre": "Roberto",
+        "apellido": "Torres",
+        "contrasena": "adminroberto753",
+        "fecha_nacimiento": "1989-06-10",
+        "mail": "roberto.torres@example.com",
+        "nombre_usuario": "robertor"
+      },
+      {
+        "tipo_usuario": "UsuarioNormal",
+        "id": 10,
+        "nombre": "Sofía",
+        "apellido": "García",
+        "contrasena": "sofiagarcia951",
+        "fecha_nacimiento": "1991-11-18",
+        "mail": "sofia.garcia@example.com",
+        "nombre_usuario": "sofiag"
+      }
     ]
+  ],
+  "productos": [
+    {
+      "id": "1",
+      "descripcion": "iPhone 13",
+      "stock": "15",
+      "precio": 999,
+      "categoria": {
+        "id": "1",
+        "nombre": "Móviles",
+        "descripcion": "Teléfonos móviles de última tecnología."
+      },
+      "informacion": "iPhone 13 con pantalla Super Retina XDR y chip A15 Bionic.",
+      "direccionImagenes": [
+        "https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iphone13_hero_geo_09142021_inline.jpg.large.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "descripcion": "Samsung Galaxy S21",
+      "stock": 18,
+      "precio": 850,
+      "categoria": {
+        "id": 1,
+        "nombre": "Móviles",
+        "descripcion": "Dispositivos móviles como smartphones y tablets"
+      },
+      "informacion": "Samsung Galaxy S21 con cámara de alta resolución y pantalla de 120Hz.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "3",
+      "descripcion": "Audífonos inalámbricos Sony WH-1000XM4",
+      "stock": 29,
+      "precio": 300,
+      "categoria": {
+        "id": 3,
+        "nombre": "Accesorios",
+        "descripcion": "Accesorios tecnológicos como audífonos, teclados"
+      },
+      "informacion": "Audífonos con cancelación de ruido y batería de 30 horas.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "4",
+      "descripcion": "MacBook Air M1",
+      "stock": 5,
+      "precio": 1199,
+      "categoria": {
+        "id": 2,
+        "nombre": "Portátiles",
+        "descripcion": "Ordenadores portátiles para uso personal y profesional"
+      },
+      "informacion": "MacBook Air con chip M1 de Apple, 8 GB de RAM y pantalla Retina de 13.3 pulgadas.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "5",
+      "descripcion": "iPad Pro 12.9",
+      "stock": 10,
+      "precio": 1099,
+      "categoria": {
+        "id": 3,
+        "nombre": "Tablets",
+        "descripcion": "Dispositivos portátiles con pantalla táctil."
+      },
+      "informacion": "iPad Pro de 12.9 pulgadas con chip M1 y pantalla Liquid Retina XDR.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "6",
+      "descripcion": "Dell XPS 13",
+      "stock": 7,
+      "precio": 1299,
+      "categoria": {
+        "id": 2,
+        "nombre": "Portátiles",
+        "descripcion": "Ordenadores portátiles para uso personal y profesional"
+      },
+      "informacion": "Dell XPS 13 con procesador Intel i7 de 11ª generación y pantalla InfinityEdge.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "7",
+      "descripcion": "Apple Watch Series 7",
+      "stock": 15,
+      "precio": 399,
+      "categoria": {
+        "id": 5,
+        "nombre": "Wearables",
+        "descripcion": "Dispositivos tecnológicos vestibles como relojes inteligentes."
+      },
+      "informacion": "Apple Watch Series 7 con pantalla Retina siempre activa y resistencia al agua.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "8",
+      "descripcion": "Google Pixel 6",
+      "stock": 12,
+      "precio": 899,
+      "categoria": {
+        "id": 1,
+        "nombre": "Móviles",
+        "descripcion": "Dispositivos móviles como smartphones y tablets"
+      },
+      "informacion": "Google Pixel 6 con pantalla OLED de 6.4 pulgadas y procesador Google Tensor.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "9",
+      "descripcion": "Sony PlayStation 5",
+      "stock": 3,
+      "precio": 499,
+      "categoria": {
+        "id": 6,
+        "nombre": "Consolas",
+        "descripcion": "Consolas de videojuegos y accesorios."
+      },
+      "informacion": "Sony PlayStation 5 con disco SSD ultrarrápido y gráficos de 4K HDR.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "10",
+      "descripcion": "Xbox Series X",
+      "stock": 5,
+      "precio": 499,
+      "categoria": {
+        "id": 6,
+        "nombre": "Consolas",
+        "descripcion": "Consolas de videojuegos y accesorios."
+      },
+      "informacion": "Xbox Series X con 1TB de almacenamiento y tecnología de trazado de rayos.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "11",
+      "descripcion": "Amazon Echo Dot 4ta Gen",
+      "stock": 25,
+      "precio": 49.99,
+      "categoria": {
+        "id": 7,
+        "nombre": "Hogar Inteligente",
+        "descripcion": "Dispositivos para automatización y control del hogar."
+      },
+      "informacion": "Amazon Echo Dot de 4ta generación con Alexa integrada y diseño esférico.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "12",
+      "descripcion": "Kindle Paperwhite",
+      "stock": 15,
+      "precio": 129.99,
+      "categoria": {
+        "id": 8,
+        "nombre": "Lectores de eBooks",
+        "descripcion": "Dispositivos para leer libros electrónicos."
+      },
+      "informacion": "Kindle Paperwhite con pantalla de 6.8 pulgadas y luz ajustable cálida.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "13",
+      "descripcion": "GoPro HERO10 Black",
+      "stock": 7,
+      "precio": 499.99,
+      "categoria": {
+        "id": 9,
+        "nombre": "Cámaras",
+        "descripcion": "Cámaras de video y fotografía."
+      },
+      "informacion": "GoPro HERO10 Black con grabación en 5.3K y estabilización HyperSmooth 4.0.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "14",
+      "descripcion": "Apple AirPods Pro",
+      "stock": 18,
+      "precio": 249.99,
+      "categoria": {
+        "id": 4,
+        "nombre": "Auriculares",
+        "descripcion": "Auriculares inalámbricos y con cable."
+      },
+      "informacion": "Apple AirPods Pro con cancelación de ruido activa y audio espacial.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "15",
+      "descripcion": "Nintendo Switch",
+      "stock": 10,
+      "precio": 299.99,
+      "categoria": {
+        "id": 6,
+        "nombre": "Consolas",
+        "descripcion": "Consolas de videojuegos y accesorios."
+      },
+      "informacion": "Nintendo Switch con pantalla OLED de 7 pulgadas y modo de juego portátil y dock.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "16",
+      "descripcion": "DJI Mini 2",
+      "stock": 8,
+      "precio": 449,
+      "categoria": {
+        "id": 10,
+        "nombre": "Drones",
+        "descripcion": "Drones para fotografía aérea y video."
+      },
+      "informacion": "DJI Mini 2 con cámara 4K y alcance de vuelo de hasta 10 km.",
+      "direccionImagenes": []
+    }
+  ],
+  "productosDestacados": [
+    {
+      "id": "2",
+      "descripcion": "Samsung Galaxy S21",
+      "stock": 18,
+      "precio": 850,
+      "categoria": {
+        "id": 1,
+        "nombre": "Móviles",
+        "descripcion": "Dispositivos móviles como smartphones y tablets"
+      },
+      "informacion": "Samsung Galaxy S21 con cámara de alta resolución y pantalla de 120Hz.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "3",
+      "descripcion": "Audífonos inalámbricos Sony WH-1000XM4",
+      "stock": 29,
+      "precio": 300,
+      "categoria": {
+        "id": 3,
+        "nombre": "Accesorios",
+        "descripcion": "Accesorios tecnológicos como audífonos, teclados"
+      },
+      "informacion": "Audífonos con cancelación de ruido y batería de 30 horas.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "5",
+      "descripcion": "iPad Pro 12.9",
+      "stock": 10,
+      "precio": 1099,
+      "categoria": {
+        "id": 3,
+        "nombre": "Tablets",
+        "descripcion": "Dispositivos portátiles con pantalla táctil."
+      },
+      "informacion": "iPad Pro de 12.9 pulgadas con chip M1 y pantalla Liquid Retina XDR.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "12",
+      "descripcion": "Kindle Paperwhite",
+      "stock": 15,
+      "precio": 129.99,
+      "categoria": {
+        "id": 8,
+        "nombre": "Lectores de eBooks",
+        "descripcion": "Dispositivos para leer libros electrónicos."
+      },
+      "informacion": "Kindle Paperwhite con pantalla de 6.8 pulgadas y luz ajustable cálida.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "13",
+      "descripcion": "GoPro HERO10 Black",
+      "stock": 7,
+      "precio": 499.99,
+      "categoria": {
+        "id": 9,
+        "nombre": "Cámaras",
+        "descripcion": "Cámaras de video y fotografía."
+      },
+      "informacion": "GoPro HERO10 Black con grabación en 5.3K y estabilización HyperSmooth 4.0.",
+      "direccionImagenes": []
+    }
+  ],
+  "visitadosRecientemente": [
+    {
+      "id": "8",
+      "descripcion": "Google Pixel 6",
+      "stock": 12,
+      "precio": 899,
+      "categoria": {
+        "id": 1,
+        "nombre": "Móviles",
+        "descripcion": "Dispositivos móviles como smartphones y tablets"
+      },
+      "informacion": "Google Pixel 6 con pantalla OLED de 6.4 pulgadas y procesador Google Tensor.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "11",
+      "descripcion": "Amazon Echo Dot 4ta Gen",
+      "stock": 25,
+      "precio": 49.99,
+      "categoria": {
+        "id": 7,
+        "nombre": "Hogar Inteligente",
+        "descripcion": "Dispositivos para automatización y control del hogar."
+      },
+      "informacion": "Amazon Echo Dot de 4ta generación con Alexa integrada y diseño esférico.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "12",
+      "descripcion": "Kindle Paperwhite",
+      "stock": 15,
+      "precio": 129.99,
+      "categoria": {
+        "id": 8,
+        "nombre": "Lectores de eBooks",
+        "descripcion": "Dispositivos para leer libros electrónicos."
+      },
+      "informacion": "Kindle Paperwhite con pantalla de 6.8 pulgadas y luz ajustable cálida.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "13",
+      "descripcion": "GoPro HERO10 Black",
+      "stock": 7,
+      "precio": 499.99,
+      "categoria": {
+        "id": 9,
+        "nombre": "Cámaras",
+        "descripcion": "Cámaras de video y fotografía."
+      },
+      "informacion": "GoPro HERO10 Black con grabación en 5.3K y estabilización HyperSmooth 4.0.",
+      "direccionImagenes": []
+    },
+    {
+      "id": "16",
+      "descripcion": "DJI Mini 2",
+      "stock": 8,
+      "precio": 449,
+      "categoria": {
+        "id": 10,
+        "nombre": "Drones",
+        "descripcion": "Drones para fotografía aérea y video."
+      },
+      "informacion": "DJI Mini 2 con cámara 4K y alcance de vuelo de hasta 10 km.",
+      "direccionImagenes": []
+    }
+  ]
 }
