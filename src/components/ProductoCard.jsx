@@ -1,4 +1,5 @@
 import Button from 'react-bootstrap/Button';
+import {Link} from 'react-router-dom';
 import {Cart, Star, StarFill} from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 
@@ -30,8 +31,10 @@ function ProductoCard({producto}) {
                     <p className="mb-1 fs-4">${producto.precio}</p>
                 </div>
                 <div className="d-flex justify-content-between align-items-center">
-                    <Button className="btn btn-primary">Ver detalle</Button>
-                    <Button className="btn btn-outline-info"><Cart /></Button>
+                    <Link to={`/producto/${producto.id}`} className="btn btn-primary">
+                        Ver detalle
+                    </Link>
+                    <Button className="btn btn-primary"><Cart /></Button>
                     <p className="mb-1 pt-3" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
                 </div>
             </div>

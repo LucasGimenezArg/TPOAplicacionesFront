@@ -9,6 +9,15 @@ export const getProductos = async () => {
     }
 }
 
+export const getProductoPorId = async (id) => {
+    try {
+        const response = await client.get(`/productos/${id}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const getProductosDestacados = async () => {
     try {
         const response = await client.get('/productosDestacados');
