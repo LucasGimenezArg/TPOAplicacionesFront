@@ -1,21 +1,32 @@
-import apiClient from "../services/client";
 import { useState, useEffect } from "react";
 import ProductosPaginadosList from "../components/ProductosPaginadosList";
+import { getProductosDestacados, getVisitadosRecientemente } from "../services/serviceProductos";
 
 function Home({isLoggedIn}) { 
     const [productosDestacados, setProductosDestacados] = useState([]);
+    const [visitadosRecientemente, setVisitadosRecientemente] = useState([]);
 
     useEffect(() => {
-        apiClient.get('/productosDestacados')
-            .then(response => setProductosDestacados(response.data))
-            .catch(error => console.log(error));
-    }, []);
+        async function fetchData(){
+            setProductosDestacados(await getProductosDestacados());
+            if(isLoggedIn){
+                setVisitadosRecientemente(await getVisitadosRecientemente());
+            }
+        }
+        fetchData()
+    },[isLoggedIn]);
 
     return(
         <>
             <h2 className="text-center mt-5">Productos Destacados</h2>
             <ProductosPaginadosList productos={productosDestacados} cantProductos={4}/>
-            {isLoggedIn ? <ProductosPaginadosList productos={productosDestacados} cantProductos={4}/> : null}
+            {isLoggedIn && visitadosRecientemente.length > 0 ? (
+                <div className="container">
+                    <h2 className="text-center mt-5">Visitados recientemente</h2>
+                    <ProductosPaginadosList productos={visitadosRecientemente} cantProductos={4}/>
+                </div>
+                )
+                : null}
         </>
     )
 }
