@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { Nav } from "react-bootstrap";
 import ProductCard from "../components/ProductoCard";
 import { getProductos } from "../services/serviceProductos";
 
-function Productos() {
+function Productos({ isLoggedIn }) {
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
@@ -42,7 +44,16 @@ function Productos() {
 
   return (
     <div className="container products-page">
-      {isLoading ? (
+      {!isLoggedIn ? (
+        <div className="alert alert-danger text-center m-5" role="alert">
+          <h3>Tenés que loguearte para acceder a esta funcionalidad</h3>
+          <button type="button" className="btn btn-dark">
+            <Nav.Link as={Link} to="/login">
+              Iniciar Sesión
+            </Nav.Link>
+          </button>
+        </div>
+      ) : isLoading ? (
         <div className="loading">Cargando productos...</div>
       ) : (
         <>
