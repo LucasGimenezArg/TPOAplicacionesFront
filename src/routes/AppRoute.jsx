@@ -21,7 +21,7 @@ function AppRoute() {
     setisLoggedIn(false);
   }
 
-  const refreshCarrito = async () => setItemsCarrito(await getItemsCarrito());
+  const refreshCarrito = async () => isLoggedIn && setItemsCarrito(await getItemsCarrito());
 
   return (
     <>
