@@ -2,8 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import Carrito from "./Carrito.jsx";
 
-const Header = ({ isLoggedIn, handleLogout }) => {
+const Header = ({ isLoggedIn, handleLogout, itemsCarrito, refreshCarrito }) => {
     return (
         <header>
             <Navbar bg="dark" data-bs-theme="dark">
@@ -15,6 +16,7 @@ const Header = ({ isLoggedIn, handleLogout }) => {
                     </Nav>
                     {isLoggedIn ? (
                         <Nav>
+                            <Carrito items={itemsCarrito} refresh={refreshCarrito} />
                             <Nav.Link as={Link} to="/perfil">Perfil</Nav.Link>
                             <Nav.Link onClick={handleLogout} as={Link} to="/">Cerrar Sesion</Nav.Link>
                         </Nav>

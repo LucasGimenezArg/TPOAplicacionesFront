@@ -7,9 +7,11 @@ import Register from '../pages/CrearCuenta.jsx';
 import Productos from '../pages/Productos.jsx'
 import GestionProductos from '../pages/GestionProductos.jsx';
 import DetalleProducto from '../pages/DetalleProducto.jsx';
+import {getItemsCarrito} from "../services/serviceCarrito.js";
 
 function AppRoute() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [itemsCarrito, setItemsCarrito] = useState([]);
 
   const handleLogin = () => {
     setisLoggedIn(true);
@@ -19,15 +21,17 @@ function AppRoute() {
     setisLoggedIn(false);
   }
 
+  const refreshCarrito = async () => isLoggedIn && setItemsCarrito(await getItemsCarrito());
+
   return (
     <>
-      <Header isLoggedIn = {isLoggedIn} handleLogout = {handleLogout}/>
+      <Header isLoggedIn = {isLoggedIn} handleLogout = {handleLogout} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito}/>
       <Routes>
-          <Route path="/" element={<Home isLoggedIn = {isLoggedIn}/>} />
+          <Route path="/" element={<Home isLoggedIn = {isLoggedIn} refreshCarrito={refreshCarrito}/>} />
           <Route path="/login" element={<Login handleLogin = {handleLogin}/>} />
           <Route path="/register" element={<Register handleLogin = {handleLogin} />} />
-          <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} />} />
-          <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} />} />
+          <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} refreshCarrito={refreshCarrito} />} />
+          <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} refreshCarrito={refreshCarrito} />} />
           <Route path="/gestionProductos" element={<GestionProductos isLoggedIn = {isLoggedIn} />} />
       </Routes>
     </>

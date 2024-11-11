@@ -1,13 +1,16 @@
 import { useParams, Link } from "react-router-dom";
-import { Nav, Carousel, Button } from "react-bootstrap";
+import {Nav, Carousel, Button} from "react-bootstrap";
 import { Cart } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import { getProductoPorId } from "../services/serviceProductos";
+import NumericInput from "../components/NumericInput.jsx";
+import {addOrUpdateItemCarrito} from "../services/serviceCarrito.js";
 
-function DetalleProducto({ isLoggedIn }) {
+function DetalleProducto({ isLoggedIn, refreshCarrito }) {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [cantidadCarrito, setCantidadCarrito] = useState(1);
 
   useEffect(() => {
     const fetchProducto = async () => {
@@ -67,7 +70,11 @@ function DetalleProducto({ isLoggedIn }) {
               <h2 className="mb-3">{producto.descripcion}</h2>
               <p className="mb-3"><strong>Descripción:</strong> {producto.informacion}</p>
               <h3 className="text-success">${producto.precio}</h3>
-                <Button className="btn btn-primary"><Cart /> Agregar al Carrito</Button>
+                <NumericInput label='Cantidad' value={cantidadCarrito} minValue={1} maxValue={producto.stock} onChange={setCantidadCarrito}/>
+                <Button className="btn btn-primary" onClick={() => {
+                  addOrUpdateItemCarrito({producto, cantidad: cantidadCarrito});
+                  refreshCarrito();
+                }}><Cart /> Agregar al Carrito</Button>
                 <p className="p-3 d-inline" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
             </div>
           </div>

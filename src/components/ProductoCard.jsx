@@ -2,8 +2,9 @@ import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
 import {Cart, Star, StarFill} from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
+import {addOrUpdateItemCarrito} from "../services/serviceCarrito.js";
 
-function ProductoCard({producto}) {
+function ProductoCard({producto, refreshCarrito}) {
     const [imgDir, setImgDir] = useState('/noImg.jpg');
     const [star, setStar] = useState(false);
     
@@ -34,7 +35,10 @@ function ProductoCard({producto}) {
                     <Link to={`/producto/${producto.id}`} className="btn btn-primary">
                         Ver detalle
                     </Link>
-                    <Button className="btn btn-primary"><Cart /></Button>
+                    <Button className="btn btn-primary"><Cart onClick={() => {
+                        addOrUpdateItemCarrito({producto});
+                        refreshCarrito();
+                    }} /></Button>
                     <p className="mb-1 pt-3" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
                 </div>
             </div>
