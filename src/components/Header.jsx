@@ -13,10 +13,10 @@ const Header = ({ isLoggedIn, handleLogout, itemsCarrito, refreshCarrito }) => {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/productos">Productos</Nav.Link>
                         <Nav.Link as={Link} to="/gestionProductos">Gestion Productos</Nav.Link>
-                        <Carrito items={itemsCarrito} refresh={refreshCarrito} />
                     </Nav>
                     {isLoggedIn ? (
                         <Nav>
+                            <Carrito items={itemsCarrito} refresh={refreshCarrito} />
                             <Nav.Link as={Link} to="/perfil">Perfil</Nav.Link>
                             <Nav.Link onClick={handleLogout} as={Link} to="/">Cerrar Sesion</Nav.Link>
                         </Nav>
