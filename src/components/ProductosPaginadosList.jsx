@@ -4,6 +4,7 @@ import ProductoCard from "./ProductoCard";
 function ProductosPaginadosList(props) {
     const productos = props.productos;
     const productosPorPagina = props.cantProductos;
+    const itemsCarrito = props.itemsCarrito;
     const refreshCarrito = props.refreshCarrito;
     const [indice, setIndice] = useState(0);
 
@@ -27,7 +28,7 @@ function ProductosPaginadosList(props) {
             <div className="d-flex flex-row flex-wrap justify-content-between flex-grow-1">
                 {productosPaginados.map(producto => (
                     <div key={producto.id} className="me-3">
-                        <ProductoCard key={producto.id} producto={producto} refreshCarrito={refreshCarrito} />
+                        <ProductoCard key={producto.id} producto={producto} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />
                     </div>
                 ))}
             </div>
