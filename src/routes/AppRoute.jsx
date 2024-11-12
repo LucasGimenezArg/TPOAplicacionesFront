@@ -35,7 +35,7 @@ function AppRoute() {
           <Route path="/login" element={<Login handleLogin = {handleLogin}/>} />
           <Route path="/register" element={<Register handleLogin = {handleLogin} />} />
           <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
-          <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} loggedUser={loggedUser} temsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
+          <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
           <Route path="/gestionProductos" element={<GestionProductos isLoggedIn = {isLoggedIn} />} />
       </Routes>
       <NotificationContainer />
