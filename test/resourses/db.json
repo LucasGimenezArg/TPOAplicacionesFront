@@ -506,5 +506,37 @@
     }
   ],
   "carrito": [],
-  "checkout": []
+  "checkout": [],
+
+  "transacciones": [
+        {
+            "id": 1,
+            "usuarioId": "1",
+            "carrito": [
+                { "producto": "Arroz", "cantidad": 2, "precio": 2000 },
+                { "producto": "Leche", "cantidad": 1, "precio": 2000 }
+            ],
+            "fecha": "11/01/2024"
+        },
+        {
+            "id": 2,
+            "usuarioId": "1",
+            "carrito": [
+                { "producto": "Pescado", "cantidad": 1, "precio": 4350 }
+            ],
+            "fecha": "10/01/2024"
+        },
+        {
+          "id": 3,
+          "usuarioId": "1",
+          "carrito": [
+              { "producto": "Carne", "cantidad": 1, "precio": 6000 },
+              { "producto": "Pollo", "cantidad": 1, "precio": 6000 },
+              { "producto": "Carne", "cantidad": 1, "precio": 6000 },
+              { "producto": "Nueces", "cantidad": 1, "precio": 6000 }
+          ],
+          "fecha": "10/01/2024"
+      }
+    ]
+
 }

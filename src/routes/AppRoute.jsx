@@ -9,15 +9,18 @@ import GestionProductos from '../pages/GestionProductos.jsx';
 import DetalleProducto from '../pages/DetalleProducto.jsx';
 import {getItemsCarrito} from "../services/serviceCarrito.js";
 import NotificationContainer from "../components/NotificationContainer.jsx";
+import MiPerfil from '../pages/MiPerfil.jsx';
 
 function AppRoute() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState();
   const [itemsCarrito, setItemsCarrito] = useState([]);
+  const [usuarioId, setUsuarioId] = useState(null);
 
   const handleLogin = (usuario) => {
     setisLoggedIn(true);
     setLoggedUser(usuario);
+    setUsuarioId(usuario.id); 
   }
 
   const handleLogout = () => {
@@ -37,6 +40,7 @@ function AppRoute() {
           <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
           <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
           <Route path="/gestionProductos" element={<GestionProductos isLoggedIn = {isLoggedIn} />} />
+          <Route path="/perfil" element={<MiPerfil usuarioId={usuarioId} />} />
       </Routes>
       <NotificationContainer />
     </>
