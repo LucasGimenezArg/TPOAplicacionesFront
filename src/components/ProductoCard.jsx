@@ -42,8 +42,7 @@ function ProductoCard({producto, loggedUser, itemsCarrito, refreshCarrito}) {
                         Ver detalle
                     </Link>
                     <Button disabled={itemCarrito && itemCarrito.cantidad == producto.stock} className="btn btn-primary" onClick={() => {
-                        addOrUpdateItemCarrito({usuario: loggedUser, producto});
-                        refreshCarrito();
+                        addOrUpdateItemCarrito({usuario: loggedUser, producto}).then(() => refreshCarrito());
                     }}><CartPlus /></Button>
                     <p className="mb-1 pt-3" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
                 </div>
