@@ -108,11 +108,13 @@ export default function Carrito({items, loggedUser, refresh}) {
                 <ListGroup>
                     {items.map(item => <ListGroup.Item key={item.id}>
                         {item.producto.descripcion} ({item.cantidad} x ${item.producto.precio}) –
-                        ${item.producto.precio * item.cantidad}
+                        ${(item.producto.precio * item.cantidad).toFixed(2)}
                     </ListGroup.Item>)}
                     <ListGroup.Item>
                         <strong>TOTAL:
-                            ${items.reduce((subtotal, current) => subtotal + (current.cantidad * current.producto.precio), 0)}</strong>
+                            ${items
+                                .reduce((subtotal, current) => subtotal + (current.cantidad * current.producto.precio), 0)
+                                .toFixed(2)}</strong>
                     </ListGroup.Item>
                 </ListGroup>
             </ConfirmationDialog>

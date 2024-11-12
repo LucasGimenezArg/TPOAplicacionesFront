@@ -68,7 +68,7 @@ const MiPerfil = ({ usuarioId }) => {
                                             </li>
                                         ))}
                                     </ul>
-                                    Total: {transaccion.items.reduce((subtotal, current) => subtotal + (current.cantidad * current.producto.precio), 0)}
+                                    Total: {transaccion.items.reduce((subtotal, current) => subtotal + (current.cantidad * current.producto.precio), 0).toFixed(2)}
                                 </Card.Text>
                             </Card.Body>
                         </Card>
