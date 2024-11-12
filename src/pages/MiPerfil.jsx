@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { getTransaccionesPorUsuario } from '../services/serviceTransacciones';
 import { getUsuarioPorId } from '../services/serviceUsuarios';
+import { getHistory } from '../services/serviceCarrito';
 
 const MiPerfil = ({ usuarioId }) => {
     const [usuario, setUsuario] = useState(null);
     const [transacciones, setTransacciones] = useState([]);
     const [visibleCount, setVisibleCount] = useState(2); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,7 +16,7 @@ const MiPerfil = ({ usuarioId }) => {
                 const fetchedUsuario = await getUsuarioPorId(usuarioId);
                 setUsuario(fetchedUsuario);
 
-                const fetchedTransacciones = await getTransaccionesPorUsuario(usuarioId);
+                const fetchedTransacciones = await getHistory(fetchedUsuario);
                 setTransacciones(fetchedTransacciones);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -56,16 +58,17 @@ const MiPerfil = ({ usuarioId }) => {
                     {transacciones.slice(0, visibleCount).map((transaccion) => (
                         <Card key={transaccion.id} className="mb-3">
                             <Card.Body>
-                                <Card.Title>Fecha: {transaccion.fecha}</Card.Title>
+                                <Card.Title>Fecha: {new Date(transaccion.timestamp).toLocaleString()}</Card.Title>
                                 <Card.Text>
                                     <strong>Carrito:</strong>
                                     <ul>
-                                        {transaccion.carrito.map((item, index) => (
+                                        {transaccion.items.map((item, index) => (
                                             <li key={index}>
-                                                {item.cantidad} x {item.producto} - ${item.precio.toFixed(2)}
+                                                {item.cantidad} x {item.producto.descripcion} - ${item.producto.precio.toFixed(2)}
                                             </li>
                                         ))}
                                     </ul>
+                                    Total: {transaccion.items.reduce((subtotal, current) => subtotal + (current.cantidad * current.producto.precio), 0)}
                                 </Card.Text>
                             </Card.Body>
                         </Card>
