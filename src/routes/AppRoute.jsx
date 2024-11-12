@@ -8,6 +8,7 @@ import Productos from '../pages/Productos.jsx'
 import GestionProductos from '../pages/GestionProductos.jsx';
 import DetalleProducto from '../pages/DetalleProducto.jsx';
 import {getItemsCarrito} from "../services/serviceCarrito.js";
+import NotificationContainer from "../components/NotificationContainer.jsx";
 
 function AppRoute() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -27,13 +28,14 @@ function AppRoute() {
     <>
       <Header isLoggedIn = {isLoggedIn} handleLogout = {handleLogout} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito}/>
       <Routes>
-          <Route path="/" element={<Home isLoggedIn = {isLoggedIn} refreshCarrito={refreshCarrito}/>} />
+          <Route path="/" element={<Home isLoggedIn = {isLoggedIn} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito}/>} />
           <Route path="/login" element={<Login handleLogin = {handleLogin}/>} />
           <Route path="/register" element={<Register handleLogin = {handleLogin} />} />
-          <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} refreshCarrito={refreshCarrito} />} />
-          <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} refreshCarrito={refreshCarrito} />} />
+          <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
+          <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
           <Route path="/gestionProductos" element={<GestionProductos isLoggedIn = {isLoggedIn} />} />
       </Routes>
+      <NotificationContainer />
     </>
   )
 }

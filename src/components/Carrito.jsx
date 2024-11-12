@@ -1,23 +1,24 @@
 import {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
-import {Cart, CartFill} from 'react-bootstrap-icons';
+import {Cart, CartCheck, CartFill, CartX} from 'react-bootstrap-icons';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import {Image, ListGroup} from "react-bootstrap";
-import {addOrUpdateItemCarrito, checkout, removeItemCarrito} from "../services/serviceCarrito.js";
+import {addOrUpdateItemCarrito, checkout, clearCarrito, removeItemCarrito} from "../services/serviceCarrito.js";
 import ConfirmationDialog from "./ConfirmationDialog.jsx";
 import NumericInput from "./NumericInput.jsx";
 
-export default function Carrito({isLoggedIn, items, refresh}) {
+export default function Carrito({items, refresh}) {
     const [isVisible, setIsVisible] = useState(false);
     const [stateDeleteDialog, setStateDeleteDialog] = useState({visible: false});
     const [stateCheckoutDialog, setStateCheckoutDialog] = useState({visible: false});
+    const [showClearDialog, setShowClearDialog] = useState(false);
 
     useEffect(() => {
         (async function fetchData() {
             await refresh();
         })();
-    }, [isLoggedIn, refresh]);
+    }, []);
 
     const modifyItem = async (item, newCantidad) => {
         if (newCantidad >= 1) {
@@ -25,6 +26,12 @@ export default function Carrito({isLoggedIn, items, refresh}) {
         } else {
             await removeItemCarrito(item.id);
         }
+        await refresh();
+    }
+
+    const vaciarCarrito = async () => {
+        await clearCarrito();
+        setShowClearDialog(false);
         await refresh();
     }
 
@@ -39,7 +46,7 @@ export default function Carrito({isLoggedIn, items, refresh}) {
 
     return (
         <>
-            <Button variant="primary" onClick={() => setIsVisible(true)}>
+            <Button variant="primary" disabled={items.length === 0} onClick={() => setIsVisible(true)}>
                 {items.length > 0
                     ? <>
                         <CartFill/>
@@ -58,7 +65,7 @@ export default function Carrito({isLoggedIn, items, refresh}) {
                         {items.map(item =>
                             <ListGroup.Item key={item.id}>
                                 <Image
-                                    src={item.producto.direccionImagenes.length > 0 ? item.producto.direccionImagenes : '/noImg.jpg'}
+                                    src={item.producto.direccionImagenes.length > 0 ? item.producto.direccionImagenes[0] : '/noImg.jpg'}
                                     width="50" height="50"></Image>
                                 {item.producto.descripcion}
                                 <NumericInput minValue={1}
@@ -74,12 +81,14 @@ export default function Carrito({isLoggedIn, items, refresh}) {
                     </ListGroup>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant='outline-primary' onClick={() => setShowClearDialog(true)}><CartX /> Vaciar carrito</Button>
                     <Button onClick={() => setStateCheckoutDialog({
                         ...stateCheckoutDialog,
                         visible: true
                     })}>Checkout</Button>
                 </Modal.Footer>
             </Modal>
+
             {/* Modal de confirmación para confirmar el carrito y hacer Checkout */}
             <ConfirmationDialog visible={stateCheckoutDialog.visible}
                                 title='¿Desea confirmar el carrito?'
@@ -105,6 +114,13 @@ export default function Carrito({isLoggedIn, items, refresh}) {
                                         visible: false
                                     }))}>
                 ¿Desea quitar <strong>{stateDeleteDialog.item?.producto.descripcion}</strong> del carrito?
+            </ConfirmationDialog>
+
+            {/* Modal de confirmación para vaciar carrito */}
+            <ConfirmationDialog visible={showClearDialog}
+                                onClose={() => setShowClearDialog(false)}
+                                onConfirm={() => vaciarCarrito()}>
+                ¿Desea vaciar el carrito?
             </ConfirmationDialog>
         </>
     );

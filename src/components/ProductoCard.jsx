@@ -1,12 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
-import {Cart, Star, StarFill} from 'react-bootstrap-icons';
+import {CartPlus, Star, StarFill} from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import {addOrUpdateItemCarrito} from "../services/serviceCarrito.js";
 
-function ProductoCard({producto, refreshCarrito}) {
+function ProductoCard({producto, itemsCarrito, refreshCarrito}) {
     const [imgDir, setImgDir] = useState('/noImg.jpg');
     const [star, setStar] = useState(false);
+    const [itemCarrito, setItemCarrito] = useState();
     
     useEffect(() => {
         if(producto.direccionImagenes != null){
@@ -15,6 +16,11 @@ function ProductoCard({producto, refreshCarrito}) {
             }
         }
     },[producto]);
+
+    useEffect(() => {
+        const item = itemsCarrito.find(item => item.producto.id === producto.id);
+        setItemCarrito(item);
+    }, [itemsCarrito, refreshCarrito]);
 
     const handleStar = () => {
         setStar(!star);
@@ -35,10 +41,10 @@ function ProductoCard({producto, refreshCarrito}) {
                     <Link to={`/producto/${producto.id}`} className="btn btn-primary">
                         Ver detalle
                     </Link>
-                    <Button className="btn btn-primary"><Cart onClick={() => {
+                    <Button disabled={itemCarrito && itemCarrito.cantidad == producto.stock} className="btn btn-primary" onClick={() => {
                         addOrUpdateItemCarrito({producto});
                         refreshCarrito();
-                    }} /></Button>
+                    }}><CartPlus /></Button>
                     <p className="mb-1 pt-3" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
                 </div>
             </div>
