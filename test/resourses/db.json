@@ -178,7 +178,7 @@
     {
       "id": "2",
       "descripcion": "Samsung Galaxy S21",
-      "stock": 16,
+      "stock": 18,
       "precio": 850,
       "categoria": {
         "id": 1,
@@ -217,7 +217,7 @@
     {
       "id": "5",
       "descripcion": "iPad Pro 12.9",
-      "stock": 9,
+      "stock": 10,
       "precio": 1099,
       "categoria": {
         "id": 3,
