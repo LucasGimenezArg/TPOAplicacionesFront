@@ -4,7 +4,7 @@ import {CartPlus, Star, StarFill} from 'react-bootstrap-icons';
 import { useEffect, useState } from 'react';
 import {addOrUpdateItemCarrito} from "../services/serviceCarrito.js";
 
-function ProductoCard({producto, itemsCarrito, refreshCarrito}) {
+function ProductoCard({producto, loggedUser, itemsCarrito, refreshCarrito}) {
     const [imgDir, setImgDir] = useState('/noImg.jpg');
     const [star, setStar] = useState(false);
     const [itemCarrito, setItemCarrito] = useState();
@@ -42,7 +42,7 @@ function ProductoCard({producto, itemsCarrito, refreshCarrito}) {
                         Ver detalle
                     </Link>
                     <Button disabled={itemCarrito && itemCarrito.cantidad == producto.stock} className="btn btn-primary" onClick={() => {
-                        addOrUpdateItemCarrito({producto});
+                        addOrUpdateItemCarrito({usuario: loggedUser, producto});
                         refreshCarrito();
                     }}><CartPlus /></Button>
                     <p className="mb-1 pt-3" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>

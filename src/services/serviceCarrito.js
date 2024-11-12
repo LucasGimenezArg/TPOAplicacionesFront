@@ -2,9 +2,10 @@ import client from './client';
 import {editProducto} from "./serviceProductos.js";
 import NotificationManager from "./NotificationManager.js";
 
-export const getItemsCarrito = async () => {
+export const getItemsCarrito = async (usuario) => {
     try {
-        const response = await client.get('/carrito');
+        const userFilter = usuario ? `?usuario.id=${usuario.id}` : '';
+        const response = await client.get('/carrito' + userFilter);
         return response.data;
     } catch (error) {
         NotificationManager.INSTANCE.push('Error al listar carrito', error.message, true);
@@ -24,20 +25,14 @@ export const getItemByProducto = async (productoId) => {
     }
 }
 
-// Si el carrito en db.json no está vacío, inicializo el autoincremental en el máximo id que existe.
-// Si está vacío, se inicializa en 0
-let autoincrementalId = Math.max(...(await getItemsCarrito()).map(item => parseInt(item.id)), 0);
-
 export const addOrUpdateItemCarrito = async (itemCarrito) => {
     try {
         if (!itemCarrito.id) {
-            const foundItem = (await getItemsCarrito()).find(item => item.producto.id === itemCarrito.producto.id);
+            const foundItem = (await getItemsCarrito(itemCarrito.usuario)).find(item => item.producto.id === itemCarrito.producto.id);
             if (foundItem) {
                 return (await updateItemCarrito({...foundItem, cantidad: itemCarrito.cantidad ?? foundItem.cantidad + 1}));
             }
-            autoincrementalId++;
             return (await client.post('/carrito', {
-                id: autoincrementalId.toString(),
                 producto: itemCarrito.producto,
                 cantidad: itemCarrito.cantidad ?? 1
             }));
@@ -73,9 +68,9 @@ export const removeItemCarrito = async (itemId) => {
     }
 }
 
-export const clearCarrito = async () => {
+export const clearCarrito = async (usuario) => {
     try {
-        const itemsCarrito = await getItemsCarrito();
+        const itemsCarrito = await getItemsCarrito(usuario);
         for (const item of itemsCarrito) {
             await removeItemCarrito(item.id);
         }
@@ -85,9 +80,14 @@ export const clearCarrito = async () => {
     }
 }
 
-export const checkout = async () => {
+export const checkout = async (usuario) => {
     try {
-        const itemsCarrito = await getItemsCarrito();
+        const itemsCarrito = await getItemsCarrito(usuario);
+        await client.post('/checkout', {
+            items: itemsCarrito,
+            usuario,
+            timestamp: new Date().toISOString()
+        })
         for (const item of itemsCarrito) {
             await editProducto({...item.producto, stock: item.producto.stock - item.cantidad});
         }

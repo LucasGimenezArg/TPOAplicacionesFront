@@ -8,7 +8,7 @@ import {addOrUpdateItemCarrito, checkout, clearCarrito, removeItemCarrito} from 
 import ConfirmationDialog from "./ConfirmationDialog.jsx";
 import NumericInput from "./NumericInput.jsx";
 
-export default function Carrito({items, refresh}) {
+export default function Carrito({items, loggedUser, refresh}) {
     const [isVisible, setIsVisible] = useState(false);
     const [stateDeleteDialog, setStateDeleteDialog] = useState({visible: false});
     const [stateCheckoutDialog, setStateCheckoutDialog] = useState({visible: false});
@@ -22,7 +22,7 @@ export default function Carrito({items, refresh}) {
 
     const modifyItem = async (item, newCantidad) => {
         if (newCantidad >= 1) {
-            await addOrUpdateItemCarrito({...item, cantidad: newCantidad});
+            await addOrUpdateItemCarrito({...item, usuario: loggedUser, cantidad: newCantidad});
         } else {
             await removeItemCarrito(item.id);
         }
@@ -36,7 +36,7 @@ export default function Carrito({items, refresh}) {
     }
 
     const doCheckout = async () => {
-        await checkout()
+        await checkout(loggedUser)
             .then(() => {
                 setStateCheckoutDialog({...stateCheckoutDialog, visible: false});
                 setIsVisible(false);

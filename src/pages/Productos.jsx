@@ -4,7 +4,7 @@ import { Nav } from "react-bootstrap";
 import ProductCard from "../components/ProductoCard";
 import { getProductos } from "../services/serviceProductos";
 
-function Productos({ isLoggedIn, itemsCarrito, refreshCarrito }) {
+function Productos({ isLoggedIn, itemsCarrito, loggedUser, refreshCarrito }) {
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriasSeleccionadas, setCategoriasSeleccionadas] = useState([]);
@@ -79,7 +79,7 @@ function Productos({ isLoggedIn, itemsCarrito, refreshCarrito }) {
                     <div className="row">
                         {productosFiltrados.map((producto) => (
                         <div className="col-md-3 col-sm-6 pb-4" key={producto.id}>
-                            <ProductCard producto={producto} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito}/>
+                            <ProductCard producto={producto} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito}/>
                         </div>
                         ))}
                     </div>

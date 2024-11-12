@@ -6,7 +6,7 @@ import { getProductoPorId } from "../services/serviceProductos";
 import NumericInput from "../components/NumericInput.jsx";
 import {addOrUpdateItemCarrito} from "../services/serviceCarrito.js";
 
-function DetalleProducto({ isLoggedIn, itemsCarrito, refreshCarrito }) {
+function DetalleProducto({ isLoggedIn, loggedUser, itemsCarrito, refreshCarrito }) {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -84,7 +84,7 @@ function DetalleProducto({ isLoggedIn, itemsCarrito, refreshCarrito }) {
               <h3 className="text-success">${producto.precio}</h3>
                 <NumericInput label='Cantidad' value={cantidadCarrito} minValue={1} maxValue={producto.stock} onChange={setCantidadCarrito}/>
                 <Button className="btn btn-primary" onClick={() => {
-                  addOrUpdateItemCarrito({producto, cantidad: cantidadCarrito}).then(() => refreshCarrito());
+                  addOrUpdateItemCarrito({producto, usuario: loggedUser, cantidad: cantidadCarrito}).then(() => refreshCarrito());
                 }}><Cart /> {inCarrito ? 'Modificar ' : 'Agregar al ' }Carrito</Button>
                 <p className="p-3 d-inline" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
             </div>
