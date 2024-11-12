@@ -6,6 +6,7 @@ function ProductosPaginadosList(props) {
     const productosPorPagina = props.cantProductos;
     const itemsCarrito = props.itemsCarrito;
     const refreshCarrito = props.refreshCarrito;
+    const loggedUser = props.loggedUser;
     const [indice, setIndice] = useState(0);
 
     const handleNext = () => {
@@ -28,7 +29,7 @@ function ProductosPaginadosList(props) {
             <div className="d-flex flex-row flex-wrap justify-content-between flex-grow-1">
                 {productosPaginados.map(producto => (
                     <div key={producto.id} className="me-3">
-                        <ProductoCard key={producto.id} producto={producto} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />
+                        <ProductoCard key={producto.id} producto={producto} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />
                     </div>
                 ))}
             </div>

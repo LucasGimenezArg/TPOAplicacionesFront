@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import Carrito from "./Carrito.jsx";
 
-const Header = ({ isLoggedIn, handleLogout, itemsCarrito, refreshCarrito }) => {
+const Header = ({ isLoggedIn, loggedUser, handleLogout, itemsCarrito, refreshCarrito }) => {
     return (
         <header>
             <Navbar bg="dark" data-bs-theme="dark">
@@ -16,7 +16,7 @@ const Header = ({ isLoggedIn, handleLogout, itemsCarrito, refreshCarrito }) => {
                     </Nav>
                     {isLoggedIn ? (
                         <Nav>
-                            <Carrito items={itemsCarrito} refresh={refreshCarrito} />
+                            <Carrito items={itemsCarrito} loggedUser={loggedUser} refresh={refreshCarrito} />
                             <Nav.Link as={Link} to="/perfil">Perfil</Nav.Link>
                             <Nav.Link onClick={handleLogout} as={Link} to="/">Cerrar Sesion</Nav.Link>
                         </Nav>
