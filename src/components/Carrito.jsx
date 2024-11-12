@@ -13,12 +13,9 @@ export default function Carrito({items, loggedUser, refresh}) {
     const [stateDeleteDialog, setStateDeleteDialog] = useState({visible: false});
     const [stateCheckoutDialog, setStateCheckoutDialog] = useState({visible: false});
     const [showClearDialog, setShowClearDialog] = useState(false);
+    const [itemsCount, setItemsCount] = useState(0);
 
-    useEffect(() => {
-        (async function fetchData() {
-            await refresh();
-        })();
-    }, []);
+    useEffect(() => setItemsCount(items.map(i => i.cantidad).reduce((acc, current) => acc + current, 0)), [items]);
 
     const modifyItem = async (item, newCantidad) => {
         if (newCantidad >= 1) {
@@ -30,8 +27,9 @@ export default function Carrito({items, loggedUser, refresh}) {
     }
 
     const vaciarCarrito = async () => {
-        await clearCarrito();
+        await clearCarrito(loggedUser);
         setShowClearDialog(false);
+        setIsVisible(false);
         await refresh();
     }
 
@@ -44,6 +42,18 @@ export default function Carrito({items, loggedUser, refresh}) {
             .finally(() => refresh());
     }
 
+    const doRemove = async (item) => {
+        await modifyItem(item, 0);
+        setStateDeleteDialog({
+            ...stateDeleteDialog,
+            visible: false
+        });
+        if (items.length > 0) {
+            setIsVisible(false);
+        }
+    }
+
+
     return (
         <>
             <Button variant="primary" disabled={items.length === 0} onClick={() => setIsVisible(true)}>
@@ -51,7 +61,7 @@ export default function Carrito({items, loggedUser, refresh}) {
                     ? <>
                         <CartFill/>
                         <Badge pill bg="danger">
-                            {items.map(i => i.cantidad).reduce((acc, current) => acc + current)}
+                            {itemsCount}
                         </Badge>
                     </>
                     : <Cart/>}
@@ -81,7 +91,8 @@ export default function Carrito({items, loggedUser, refresh}) {
                     </ListGroup>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant='outline-primary' onClick={() => setShowClearDialog(true)}><CartX /> Vaciar carrito</Button>
+                    <Button variant='outline-primary' onClick={() => setShowClearDialog(true)}><CartX/> Vaciar
+                        carrito</Button>
                     <Button onClick={() => setStateCheckoutDialog({
                         ...stateCheckoutDialog,
                         visible: true
@@ -96,7 +107,8 @@ export default function Carrito({items, loggedUser, refresh}) {
                                 onConfirm={() => doCheckout()}>
                 <ListGroup>
                     {items.map(item => <ListGroup.Item key={item.id}>
-                        {item.producto.descripcion} ({item.cantidad} x ${item.producto.precio}) – ${item.producto.precio * item.cantidad}
+                        {item.producto.descripcion} ({item.cantidad} x ${item.producto.precio}) –
+                        ${item.producto.precio * item.cantidad}
                     </ListGroup.Item>)}
                     <ListGroup.Item>
                         <strong>TOTAL:
@@ -108,11 +120,7 @@ export default function Carrito({items, loggedUser, refresh}) {
             {/* Modal de confirmación para borrar un item del carrito */}
             <ConfirmationDialog visible={stateDeleteDialog.visible}
                                 onClose={() => setStateDeleteDialog({...stateDeleteDialog, visible: false})}
-                                onConfirm={() => modifyItem(stateDeleteDialog.item, 0)
-                                    .then(() => setStateDeleteDialog({
-                                        ...stateDeleteDialog,
-                                        visible: false
-                                    }))}>
+                                onConfirm={() => doRemove(stateDeleteDialog.item)}>
                 ¿Desea quitar <strong>{stateDeleteDialog.item?.producto.descripcion}</strong> del carrito?
             </ConfirmationDialog>
 

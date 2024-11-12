@@ -32,10 +32,7 @@ export const addOrUpdateItemCarrito = async (itemCarrito) => {
             if (foundItem) {
                 return (await updateItemCarrito({...foundItem, cantidad: itemCarrito.cantidad ?? foundItem.cantidad + 1}));
             }
-            return (await client.post('/carrito', {
-                producto: itemCarrito.producto,
-                cantidad: itemCarrito.cantidad ?? 1
-            }));
+            return (await client.post('/carrito', {...itemCarrito, cantidad: itemCarrito.cantidad ?? 1 }));
         } else {
             return await updateItemCarrito(itemCarrito);
         }
@@ -86,16 +83,26 @@ export const checkout = async (usuario) => {
         await client.post('/checkout', {
             items: itemsCarrito,
             usuario,
-            timestamp: new Date().toISOString()
+            timestamp: Date.now()
         })
         for (const item of itemsCarrito) {
             await editProducto({...item.producto, stock: item.producto.stock - item.cantidad});
         }
-        await clearCarrito();
+        await clearCarrito(usuario);
         NotificationManager.INSTANCE.push('Confirmación de compra', 'Carrito confirmado exitosamente!');
         console.log('Checkout carrito: ' + JSON.stringify(itemsCarrito));
     } catch (error) {
         NotificationManager.INSTANCE.push('Error al confirmar carrito', error.message, true);
+        console.error(error);
+    }
+}
+
+export const getHistory = async (usuario) => {
+    try {
+        const response = await client.get(`/checkout?usuario.id=${usuario.id}&_sort=-timestamp`);
+        return response.data;
+    } catch (error) {
+        NotificationManager.INSTANCE.push('Error al buscar historial de compras', error.message, true);
         console.error(error);
     }
 }
