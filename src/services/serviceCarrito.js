@@ -1,5 +1,5 @@
 import client from './client';
-import {editProducto} from "./serviceProductos.js";
+import {editProducto, getProductosDestacados, getVisitadosRecientemente} from "./serviceProductos.js";
 import NotificationManager from "./NotificationManager.js";
 
 export const getItemsCarrito = async (usuario) => {
@@ -86,7 +86,18 @@ export const checkout = async (usuario) => {
             timestamp: Date.now()
         })
         for (const item of itemsCarrito) {
-            await editProducto({...item.producto, stock: item.producto.stock - item.cantidad});
+            const newStock = item.producto.stock - item.cantidad;
+            await editProducto({...item.producto, stock: newStock});
+            const destacado = (await getProductosDestacados())
+                .find(prodDestacado => prodDestacado.id === item.producto.id);
+            if (destacado) {
+                await client.put(`/productosDestacados/${destacado.id}`, {...destacado, stock: newStock});
+            }
+            const reciente = (await getVisitadosRecientemente())
+                .find(prodReciente => prodReciente.id === item.producto.id);
+            if (reciente) {
+                await client.put(`/visitadosRecientemente/${reciente.id}`, {...reciente, stock: newStock});
+            }
         }
         await clearCarrito(usuario);
         NotificationManager.INSTANCE.push('Confirmación de compra', 'Carrito confirmado exitosamente!');
