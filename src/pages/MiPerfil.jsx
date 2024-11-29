@@ -4,33 +4,15 @@ import { getTransaccionesPorUsuario } from '../services/serviceTransacciones';
 import { getUsuarioPorId } from '../services/serviceUsuarios';
 import { getHistory } from '../services/serviceCarrito';
 
-const MiPerfil = ({ usuarioId }) => {
+const MiPerfil = () => {
     const [usuario, setUsuario] = useState(null);
     const [transacciones, setTransacciones] = useState([]);
     const [visibleCount, setVisibleCount] = useState(2); 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const fetchedUsuario = await getUsuarioPorId(usuarioId);
-                setUsuario(fetchedUsuario);
-
-                const fetchedTransacciones = await getHistory(fetchedUsuario);
-                setTransacciones(fetchedTransacciones);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (usuarioId) {
-            fetchData();
-        } else {
-            setLoading(false);
-        }
-    }, [usuarioId]);
+        setUsuario(JSON.parse(localStorage.getItem('usuario')));
+    }, []);
 
     const handleShowMore = () => setVisibleCount(prevCount => prevCount + 2);
 

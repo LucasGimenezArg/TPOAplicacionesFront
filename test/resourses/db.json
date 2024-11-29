@@ -161,9 +161,9 @@
   "productos": [
     {
       "id": "1",
-      "descripcion": "iPhone 13",
-      "stock": "15",
-      "precio": 999,
+      "descripcion": "iPhone 14",
+      "stock": "-1",
+      "precio": "-100",
       "categoria": {
         "id": "1",
         "nombre": "Móviles",
@@ -358,17 +358,19 @@
       "direccionImagenes": []
     },
     {
-      "id": "16",
-      "descripcion": "DJI Mini 2",
-      "stock": 8,
-      "precio": 449,
+      "id": "b795",
+      "descripcion": "iPhone 13 test",
+      "precio": "100",
+      "stock": "10",
       "categoria": {
-        "id": 10,
-        "nombre": "Drones",
-        "descripcion": "Drones para fotografía aérea y video."
+        "id": "1",
+        "nombre": "Móviles",
+        "descripcion": "Teléfonos móviles de última tecnología."
       },
-      "informacion": "DJI Mini 2 con cámara 4K y alcance de vuelo de hasta 10 km.",
-      "direccionImagenes": []
+      "informacion": "test",
+      "direccionImagenes": [
+        "https://http2.mlstatic.com/D_NQ_NP_795127-MLU77719747195_072024-O.webp"
+      ]
     }
   ],
   "productosDestacados": [
@@ -505,7 +507,38 @@
       "direccionImagenes": []
     }
   ],
-  "carrito": [],
+  "carrito": [
+    {
+      "id": "4247",
+      "usuario": {
+        "tipo_usuario": "UsuarioAdmin",
+        "id": "2",
+        "nombre": "Ana",
+        "apellido": "Gómez",
+        "contrasena": "adminpassword",
+        "fecha_nacimiento": "1985-05-15",
+        "mail": "ana.gomez@example.com",
+        "nombre_usuario": "anag"
+      },
+      "producto": {
+        "id": "1",
+        "descripcion": "iPhone 14",
+        "stock": "-1",
+        "precio": "-100",
+        "categoria": {
+          "id": "1",
+          "nombre": "Móviles",
+          "descripcion": "Teléfonos móviles de última tecnología."
+        },
+        "informacion": "iPhone 13 con pantalla Super Retina XDR y chip A15 Bionic.",
+        "direccionImagenes": [
+          "https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iphone13_hero_geo_09142021_inline.jpg.large.jpg",
+          "https://http2.mlstatic.com/D_NQ_NP_795127-MLU77719747195_072024-O.webp"
+        ]
+      },
+      "cantidad": 1
+    }
+  ],
   "checkout": [
     {
       "id": "d14b",

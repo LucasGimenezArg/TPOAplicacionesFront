@@ -18,10 +18,11 @@ const ProductForm = ({
   };
 
   const handleCategoriaChange = (e) => {
-    const selectedCategoria = categorias.find((categoria) => categoria.id === e.target.value);
+    const selectedCategoria = categorias.find((categoria) => categoria.id === parseInt(e.target.value));
     setProducto({
       ...producto,
       categoria: selectedCategoria || {},
+      categoriaId: selectedCategoria.id || {},
     });
   };
 

@@ -3,6 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
+import { login } from '../services/serviceUsuarios';
 
 const Login = ({ handleLogin }) => {
     const navigate = useNavigate();
@@ -13,25 +14,10 @@ const Login = ({ handleLogin }) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         
-        try {
-            const response = await fetch(`http://localhost:3001/usuario?nombre_usuario=${nombreUsuario}`);
-            const usuarios = await response.json();
-            
-            if (usuarios.length > 0) {
-                const usuario = usuarios[0]; 
-                
-                if (contrasena === usuario.contrasena) {  
-                    handleLogin(usuario); 
-                    navigate('/'); 
-                } else {
-                    setError("Contraseña incorrecta.");
-                }
-            } else {
-                setError("Usuario no encontrado.");
-            }
-        } catch (error) {
-            setError("Error al intentar iniciar sesión.");
-            console.error("Error:", error);
+        if(await login(nombreUsuario, contrasena, handleLogin)) {
+            navigate('/');
+        }else{
+            setError('Usuario o contraseña incorrectos');
         }
     };
 

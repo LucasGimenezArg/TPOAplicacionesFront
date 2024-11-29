@@ -18,7 +18,7 @@ const GestionProductos = ({ isLoggedIn }) => {
     descripcion: "",
     precio: "",
     stock: "",
-    categoria: { id: "", nombre: "", descripcion: "" },
+    categoriaId: "",
     informacion: "",
     direccionImagenes: []
   });
@@ -51,7 +51,9 @@ const GestionProductos = ({ isLoggedIn }) => {
   };
 
   const handleConfirmEdit = async () => {
-    const response = await editProducto(productoEditado);
+    const { categoria, ...productoEditadoSinCategoria } = productoEditado;
+    productoEditadoSinCategoria.categoriaId = productoEditado.categoria.id;
+    const response = await editProducto(productoEditadoSinCategoria);
     if (response.status === 200) {
       console.log("Producto editado correctamente");
       fetchData();
@@ -88,7 +90,8 @@ const GestionProductos = ({ isLoggedIn }) => {
 
   const handleConfirmNewProduct = async () => {
     try {
-      const response = await addProducto(nuevoProducto);
+      const { categoria, ...nuevoProductoSinCategoria } = nuevoProducto;
+      const response = await addProducto(nuevoProductoSinCategoria);
       if (response.status === 201) {
         console.log("Producto agregado correctamente");
         fetchData();
@@ -140,7 +143,9 @@ const GestionProductos = ({ isLoggedIn }) => {
         </div>
       ) : isLoading ? (
         <div className="loading">Cargando productos...</div>
-      ) : (
+      ) : productos == null || productos.length === 0 ? (
+        <h3 className="text-center mt-5">No se pudieron obtener productos</h3>
+      ): (
         <div className="m-5">
           <div className="d-flex justify-content-between align-content-center p-2">
             <h3>Gestión de Productos</h3>

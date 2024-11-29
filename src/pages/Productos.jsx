@@ -37,10 +37,15 @@ function Productos({ isLoggedIn, itemsCarrito, loggedUser, refreshCarrito }) {
     }
   };
 
-  const productosFiltrados = productos.filter((producto) =>
-    categoriasSeleccionadas.length === 0 ||
-    categoriasSeleccionadas.includes(producto.categoria.nombre)
-  );
+  let productosFiltrados = [];
+  if(productos != null){
+    productosFiltrados = productos.filter((producto) =>
+      categoriasSeleccionadas.length === 0 ||
+      categoriasSeleccionadas.includes(producto.categoria.nombre)
+    );
+  }else{
+    productosFiltrados = [];
+  }
 
   return (
     <div className="container products-page">
@@ -55,7 +60,9 @@ function Productos({ isLoggedIn, itemsCarrito, loggedUser, refreshCarrito }) {
         </div>
       ) : isLoading ? (
         <div className="loading">Cargando productos...</div>
-      ) : (
+      ) : productosFiltrados == null || productosFiltrados.length === 0 ? (
+        <h3 className="text-center mt-5">No se pudieron obtener productos</h3>
+      ): (
         <>
             <div className="row pt-3" style={{"height": "800px"}}>
                 <div className="col-2 border border-2">

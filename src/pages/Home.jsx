@@ -18,8 +18,12 @@ function Home({isLoggedIn, loggedUser, itemsCarrito, refreshCarrito}) {
 
     return(
         <>
+            {productosDestacados == null || productosDestacados.length === 0 ? <h3 className="text-center mt-5">No se pudieron obtener productos</h3> : 
+            <>
             <h2 className="text-center mt-5">Productos Destacados</h2>
             <ProductosPaginadosList productos={productosDestacados} cantProductos={4} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito}/>
+            </>
+            }
             {isLoggedIn && visitadosRecientemente.length > 0 ? (
                 <div className="container">
                     <h2 className="text-center mt-5">Visitados recientemente</h2>

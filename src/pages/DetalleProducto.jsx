@@ -1,12 +1,17 @@
 import { useParams, Link } from "react-router-dom";
-import {Nav, Carousel, Button} from "react-bootstrap";
+import { Nav, Carousel, Button } from "react-bootstrap";
 import { Cart } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import { getProductoPorId } from "../services/serviceProductos";
 import NumericInput from "../components/NumericInput.jsx";
-import {addOrUpdateItemCarrito} from "../services/serviceCarrito.js";
+import { addOrUpdateItemCarrito } from "../services/serviceCarrito.js";
 
-function DetalleProducto({ isLoggedIn, loggedUser, itemsCarrito, refreshCarrito }) {
+function DetalleProducto({
+  isLoggedIn,
+  loggedUser,
+  itemsCarrito,
+  refreshCarrito,
+}) {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +34,7 @@ function DetalleProducto({ isLoggedIn, loggedUser, itemsCarrito, refreshCarrito 
   }, [id]);
 
   useEffect(() => {
-    const item = itemsCarrito.find(item => item.producto.id === id);
+    const item = itemsCarrito.find((item) => item.producto.id === id);
     if (item) {
       setCantidadCarrito(item.cantidad);
       setInCarrito(true);
@@ -61,36 +66,74 @@ function DetalleProducto({ isLoggedIn, loggedUser, itemsCarrito, refreshCarrito 
           </div>
 
           <div className="row">
-            {/* Carousel de imágenes del producto */}
             <div className="col-md-5">
-              <Carousel> 
-                {producto.direccionImagenes.map((imagen, index) => (
-                  <Carousel.Item key={index}>
+              <Carousel>
+                {producto.direccionImagenes &&
+                producto.direccionImagenes.length > 0 ? (
+                  producto.direccionImagenes.map((imagen, index) => (
+                    <Carousel.Item key={index}>
+                      <img
+                        className="d-block"
+                        src={imagen}
+                        alt={`Imagen ${index + 1} de ${producto.nombre}`}
+                        style={{
+                          height: "400px",
+                          width: "100%",
+                          objectFit: "fill",
+                        }}
+                      />
+                    </Carousel.Item>
+                  ))
+                ) : (
+                  <Carousel.Item>
                     <img
                       className="d-block"
-                      src={imagen}
-                      alt={`Imagen ${index + 1} de ${producto.nombre}`}
-                      style={{ height: "400px", width: "100%", objectFit: "fill" }}
+                      src="/noImg.jpg"
+                      alt="Imagen predeterminada"
+                      style={{
+                        height: "400px",
+                        width: "100%",
+                        objectFit: "fill",
+                      }}
                     />
                   </Carousel.Item>
-                ))}
+                )}
               </Carousel>
             </div>
 
             {/* Información del producto */}
             <div className="col-md-5">
               <h2 className="mb-3">{producto.descripcion}</h2>
-              <p className="mb-3"><strong>Descripción:</strong> {producto.informacion}</p>
+              <p className="mb-3">
+                <strong>Descripción:</strong> {producto.informacion}
+              </p>
               <h3 className="text-success">${producto.precio}</h3>
-                <NumericInput label='Cantidad' value={cantidadCarrito} minValue={1} maxValue={producto.stock} onChange={setCantidadCarrito}/>
-                <Button className="btn btn-primary" onClick={() => {
-                  addOrUpdateItemCarrito({producto, usuario: loggedUser, cantidad: cantidadCarrito}).then(() => refreshCarrito());
-                }}><Cart /> {inCarrito ? 'Modificar ' : 'Agregar al ' }Carrito</Button>
-                <p className="p-3 d-inline" style={{fontSize:'12px'}}>Stock: {producto.stock}</p>
+              <NumericInput
+                label="Cantidad"
+                value={cantidadCarrito}
+                minValue={1}
+                maxValue={producto.stock}
+                onChange={setCantidadCarrito}
+              />
+              <Button
+                className="btn btn-primary"
+                onClick={() => {
+                  addOrUpdateItemCarrito({
+                    producto,
+                    usuario: loggedUser,
+                    cantidad: cantidadCarrito,
+                  }).then(() => refreshCarrito());
+                }}
+              >
+                <Cart /> {inCarrito ? "Modificar " : "Agregar al "}Carrito
+              </Button>
+              <p className="p-3 d-inline" style={{ fontSize: "12px" }}>
+                Stock: {producto.stock}
+              </p>
             </div>
           </div>
         </div>
-    )}
+      )}
     </>
   );
 }
