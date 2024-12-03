@@ -7,19 +7,18 @@ import Button from "react-bootstrap/Button";
 
 export default function Perfil({isLoggedIn}) {
     const [historial, setHistorial] = useState({});
-    const [usuario, setUsuario] = useState(null);
+    const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem('usuario')));
     const [page, setPage] = useState(0);
     const pageSize = 10;
 
     useEffect(() => {
         (async () => {
             setUsuario(JSON.parse(localStorage.getItem('usuario')));
-            setPage(0);
             if (isLoggedIn) {
                 setHistorial(await getHistory(page, pageSize));
             }
         })();
-    }, [isLoggedIn]);
+    }, [isLoggedIn, page]);
 
     const changePage = async (offset) => {
         setHistorial(await getHistory(page + offset, pageSize));
