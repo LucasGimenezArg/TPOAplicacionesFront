@@ -28,20 +28,26 @@ const Crear = () => {
         setError('');
         setMensaje('');
 
+        // Validación de la fecha (asegurarse que esté en formato 'YYYY-MM-DD')
+        const fechaValida = new Date(fechaNacimiento);
+        if (isNaN(fechaValida.getTime())) {
+            setError("Fecha de nacimiento inválida.");
+            return;
+        }
+
         // Lógica para crear el usuario con axios
         try {
             const response = await axios.post('http://localhost:8080/api/usuario/normal', {
-                nombre_usuario: nombreUsuario,
-                contrasena: contrasena,
-                nombre: nombre,
-                apellido: apellido,
-                fecha_nacimiento: fechaNacimiento,
-                mail: mail,
+                nombreUsuario: nombreUsuario,  
+                contrasena: contrasena,         
+                nombre: nombre,                 
+                apellido: apellido,             
+                fechaNacimiento: fechaValida,
+                mail: mail                      
             });
-    
-            // Depuración de la respuesta completa (opcional)
+
             console.log('Respuesta:', response);
-    
+
             if (response.status === 200) {
                 setMensaje("Cuenta creada con éxito.");
                 // Limpia los campos después de la creación de la cuenta
@@ -58,7 +64,7 @@ const Crear = () => {
         } catch (error) {
             // Manejo del error y mostrar detalles
             console.error('Error al conectar con el servidor:', error);
-    
+
             // Si el error tiene respuesta del servidor
             if (error.response) {
                 console.error('Detalles de la respuesta del error:', error.response);

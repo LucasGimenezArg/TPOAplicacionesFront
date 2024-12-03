@@ -3,7 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
-import axios from 'axios';
+import { login } from '../services/serviceUsuarios';
 
 const Login = ({ handleLogin }) => {
     const navigate = useNavigate();
@@ -13,27 +13,17 @@ const Login = ({ handleLogin }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const response = await axios.post('http://localhost:8080/api/usuario/login', {
-                credencial: nombreUsuario,
-                contrasena: contrasena,
-            });
-
-            if (response.status === 200) {
-                handleLogin(response.data); // Manejar el usuario autenticado
-                navigate('/'); // Redirigir al inicio
-            } else {
-                setError("Error al intentar iniciar sesión.");
-            }
-        } catch (error) {
-            setError(error.response?.data?.message || "Error de conexión con el servidor.");
-            console.error("Error:", error);
+        
+        if(await login(nombreUsuario, contrasena, handleLogin)) {
+            navigate('/');
+        }else{
+            setError('Usuario o contraseña incorrectos');
         }
     };
 
     const handleInputChange = (setter) => (e) => {
         setter(e.target.value);
+        // Reseteamos el error cada vez que el usuario cambia los datos
         if (error) {
             setError('');
         }
@@ -55,7 +45,7 @@ const Login = ({ handleLogin }) => {
                     <input 
                         type="text" 
                         className="form-control" 
-                        placeholder="Usuario o Correo" 
+                        placeholder="Usuario" 
                         value={nombreUsuario} 
                         onChange={handleInputChange(setNombreUsuario)} 
                         required 
@@ -77,7 +67,7 @@ const Login = ({ handleLogin }) => {
                 <button 
                     type="submit" 
                     className="btn btn-primary w-100" 
-                    disabled={!nombreUsuario || !contrasena}
+                    disabled={!nombreUsuario || !contrasena || error}
                 >
                     Iniciar
                 </button>
