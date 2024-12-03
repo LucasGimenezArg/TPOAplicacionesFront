@@ -67,8 +67,7 @@ const Crear = () => {
 
             // Si el error tiene respuesta del servidor
             if (error.response) {
-                console.error('Detalles de la respuesta del error:', error.response);
-                setError(`Error al conectar con el servidor. ${error.response.status}: ${error.response.statusText} - ${error.response.data.message || error.response.data}`);
+                setError("Usuario o mail ya existen.");
             } else {
                 // Error en la conexión, sin respuesta del servidor
                 setError("Error al conectar con el servidor. Intenta nuevamente.");
