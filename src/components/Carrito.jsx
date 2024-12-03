@@ -19,7 +19,7 @@ export default function Carrito({items, loggedUser, refresh}) {
 
     const modifyItem = async (item, newCantidad) => {
         if (newCantidad >= 1) {
-            await addOrUpdateItemCarrito({...item, usuario: loggedUser, cantidad: newCantidad});
+            await addOrUpdateItemCarrito({productoId: item.producto.id, cantidad: newCantidad});
         } else {
             await removeItemCarrito(item.id);
         }
@@ -27,14 +27,14 @@ export default function Carrito({items, loggedUser, refresh}) {
     }
 
     const vaciarCarrito = async () => {
-        await clearCarrito(loggedUser);
+        await clearCarrito();
         setShowClearDialog(false);
         setIsVisible(false);
         await refresh();
     }
 
     const doCheckout = async () => {
-        await checkout(loggedUser)
+        await checkout()
             .then(() => {
                 setStateCheckoutDialog({...stateCheckoutDialog, visible: false});
                 setIsVisible(false);

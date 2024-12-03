@@ -25,13 +25,13 @@ function AppRoute() {
     }
   }, []);
 
-  const refreshCarrito = async (usuario) => (isLoggedIn || usuario) && setItemsCarrito(await getItemsCarrito(usuario ?? loggedUser));
+  const refreshCarrito = async (usuario) => (isLoggedIn || usuario) && setItemsCarrito(await getItemsCarrito());
 
   const handleLogin = async (usuario) => {
     setisLoggedIn(true);
     setLoggedUser(usuario);
     setUsuarioId(usuario.idUsuario);
-    //await refreshCarrito(usuario);
+    await refreshCarrito(usuario);
   }
 
   const handleLogout = () => {

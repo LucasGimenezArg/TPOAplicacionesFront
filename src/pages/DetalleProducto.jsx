@@ -119,8 +119,7 @@ function DetalleProducto({
                 className="btn btn-primary"
                 onClick={() => {
                   addOrUpdateItemCarrito({
-                    producto,
-                    usuario: loggedUser,
+                    productoId: producto.id,
                     cantidad: cantidadCarrito,
                   }).then(() => refreshCarrito());
                 }}
