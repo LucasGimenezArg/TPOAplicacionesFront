@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { FaUser, FaLock, FaEnvelope, FaCalendar } from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css';
+import axios from 'axios'; 
 
 const Crear = () => {
     const [nombreUsuario, setNombreUsuario] = useState('');
@@ -17,7 +17,7 @@ const Crear = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Validación de contraseñas
         if (contrasena !== repetirContrasena) {
             setError("Las contraseñas no coinciden.");
@@ -28,25 +28,21 @@ const Crear = () => {
         setError('');
         setMensaje('');
 
-        // Lógica para crear el usuario
+        // Lógica para crear el usuario con axios
         try {
-            const response = await fetch('http://localhost:3001/usuario', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    nombre_usuario: nombreUsuario,
-                    contrasena: contrasena,
-                    nombre: nombre,
-                    apellido: apellido,
-                    fecha_nacimiento: fechaNacimiento,
-                    mail: mail,
-                    tipo_usuario: 'UsuarioNormal' 
-                }),
+            const response = await axios.post('http://localhost:8080/api/usuario/normal', {
+                nombre_usuario: nombreUsuario,
+                contrasena: contrasena,
+                nombre: nombre,
+                apellido: apellido,
+                fecha_nacimiento: fechaNacimiento,
+                mail: mail,
             });
-
-            if (response.ok) {
+    
+            // Depuración de la respuesta completa (opcional)
+            console.log('Respuesta:', response);
+    
+            if (response.status === 200) {
                 setMensaje("Cuenta creada con éxito.");
                 // Limpia los campos después de la creación de la cuenta
                 setNombreUsuario('');
@@ -60,8 +56,17 @@ const Crear = () => {
                 setError("Error al crear la cuenta. Inténtalo nuevamente.");
             }
         } catch (error) {
-            setError("Error al conectar con el servidor.");
-            console.error("Error:", error);
+            // Manejo del error y mostrar detalles
+            console.error('Error al conectar con el servidor:', error);
+    
+            // Si el error tiene respuesta del servidor
+            if (error.response) {
+                console.error('Detalles de la respuesta del error:', error.response);
+                setError(`Error al conectar con el servidor. ${error.response.status}: ${error.response.statusText} - ${error.response.data.message || error.response.data}`);
+            } else {
+                // Error en la conexión, sin respuesta del servidor
+                setError("Error al conectar con el servidor. Intenta nuevamente.");
+            }
         }
     };
 
