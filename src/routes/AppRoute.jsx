@@ -9,8 +9,8 @@ import GestionProductos from '../pages/GestionProductos.jsx';
 import DetalleProducto from '../pages/DetalleProducto.jsx';
 import {getItemsCarrito} from "../services/serviceCarrito.js";
 import NotificationContainer from "../components/NotificationContainer.jsx";
-import MiPerfil from '../pages/MiPerfil.jsx';
 import Cookies from 'js-cookie';
+import Perfil from "../pages/Perfil.jsx";
 
 function AppRoute() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -25,13 +25,13 @@ function AppRoute() {
     }
   }, []);
 
-  const refreshCarrito = async (usuario) => (isLoggedIn || usuario) && setItemsCarrito(await getItemsCarrito(usuario ?? loggedUser));
+  const refreshCarrito = async (usuario) => (isLoggedIn || usuario) && setItemsCarrito(await getItemsCarrito());
 
   const handleLogin = async (usuario) => {
     setisLoggedIn(true);
     setLoggedUser(usuario);
     setUsuarioId(usuario.idUsuario);
-    //await refreshCarrito(usuario);
+    await refreshCarrito(usuario);
   }
 
   const handleLogout = () => {
@@ -50,7 +50,7 @@ function AppRoute() {
           <Route path="/productos" element={<Productos isLoggedIn = {isLoggedIn} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
           <Route path="/producto/:id" element={<DetalleProducto isLoggedIn = {isLoggedIn} loggedUser={loggedUser} itemsCarrito={itemsCarrito} refreshCarrito={refreshCarrito} />} />
           <Route path="/gestionProductos" element={<GestionProductos isLoggedIn = {isLoggedIn} />} />
-          <Route path="/perfil" element={<MiPerfil />} />
+          <Route path="/perfil" element={<Perfil isLoggedIn={isLoggedIn} loggedUser={loggedUser} />} />
       </Routes>
       <NotificationContainer />
     </>
